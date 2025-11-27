@@ -20,7 +20,6 @@ class _LoginScreenState extends State<LoginScreen> {
     String username = _usernameController.text.trim();
     String password = _passwordController.text.trim();
 
-    // Validasi Username
     if (username.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -31,7 +30,6 @@ class _LoginScreenState extends State<LoginScreen> {
       return;
     }
 
-    // Validasi Password
     if (password.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -42,7 +40,6 @@ class _LoginScreenState extends State<LoginScreen> {
       return;
     }
 
-    // Cek apakah user terdaftar
     bool registered = await _authService.isRegistered(username);
     if (!registered) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -54,7 +51,6 @@ class _LoginScreenState extends State<LoginScreen> {
       return;
     }
 
-    // Validasi login dengan username dan password
     bool isValid = await _authService.validateLogin(username, password);
     if (!isValid) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -66,7 +62,6 @@ class _LoginScreenState extends State<LoginScreen> {
       return;
     }
 
-    // Login berhasil
     await _authService.login(username);
     if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -94,8 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const SizedBox(height: 100),
-
-                // Icon
+                
                 Container(
                   padding: const EdgeInsets.all(24),
                   decoration: const BoxDecoration(
@@ -103,14 +97,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     shape: BoxShape.circle,
                   ),
                   child: const Icon(
-                    Icons.rocket_launch,
+                    Icons.restaurant,
                     size: 50,
                     color: Colors.white,
                   ),
                 ),
                 const SizedBox(height: 32),
-
-                // Title
                 const Text(
                   "Restaurant App",
                   style: TextStyle(
@@ -120,15 +112,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 const SizedBox(height: 8),
-
-                // Subtitle
                 Text(
                   "Masuk ke akun Anda",
                   style: TextStyle(fontSize: 16, color: Colors.grey[700]),
                 ),
+                
                 const SizedBox(height: 40),
-
-                // TextField Username
+                
+                
                 Container(
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -171,8 +162,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 const SizedBox(height: 20),
-
-                // TextField Password
                 Container(
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -230,7 +219,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const SizedBox(height: 32),
 
-                // Login Button
+
+
+
                 ElevatedButton(
                   onPressed: _handleLogin,
                   style: ElevatedButton.styleFrom(
@@ -249,7 +240,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const SizedBox(height: 20),
 
-                // Register Link
+
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

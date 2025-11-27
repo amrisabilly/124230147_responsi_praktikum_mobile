@@ -17,13 +17,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final AuthService _authService = AuthService();
   bool _obscurePassword = true;
 
-  // Function Check Data
   void _handleRegister() async {
     String username = _usernameController.text.trim();
     String email = _emailController.text.trim();
     String password = _passwordController.text.trim();
 
-    // Validasi Username
     if (username.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -33,8 +31,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
       );
       return;
     }
-
-    // Validasi Email
     if (!email.contains('@')) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -44,8 +40,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
       );
       return;
     }
-
-    // Validasi Password
     if (password.length < 6) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -92,7 +86,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(height: 40),
-                // Judul
+
                 Container(
                   padding: const EdgeInsets.all(24),
                   decoration: const BoxDecoration(
@@ -123,7 +117,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
                 const SizedBox(height: 40),
 
-                // TextField Username
                 Container(
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -166,8 +159,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                 ),
                 const SizedBox(height: 32),
-
-                // TextField Email
                 Container(
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -210,10 +201,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                   ),
                 ),
-
                 SizedBox(height: 32),
-
-                // TextField Password
                 Container(
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -271,7 +259,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
 
                 SizedBox(height: 32),
-                // Button
                 ElevatedButton(
                   onPressed: _handleRegister,
                   style: ElevatedButton.styleFrom(
