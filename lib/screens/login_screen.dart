@@ -45,7 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Username belum terdaftar, silakan register'),
-          backgroundColor: Colors.orange,
+          backgroundColor: Colors.red,
         ),
       );
       return;
@@ -89,7 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const SizedBox(height: 100),
-                
+
                 Container(
                   padding: const EdgeInsets.all(24),
                   decoration: const BoxDecoration(
@@ -116,10 +116,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   "Masuk ke akun Anda",
                   style: TextStyle(fontSize: 16, color: Colors.grey[700]),
                 ),
-                
+
                 const SizedBox(height: 40),
-                
-                
+
                 Container(
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -219,9 +218,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const SizedBox(height: 32),
 
-
-
-
                 ElevatedButton(
                   onPressed: _handleLogin,
                   style: ElevatedButton.styleFrom(
@@ -239,8 +235,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 const SizedBox(height: 20),
-
-
 
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

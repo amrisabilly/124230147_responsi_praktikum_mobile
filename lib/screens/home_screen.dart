@@ -45,6 +45,12 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  void _favourite() {
+    setState(() {
+      _currentIndex = 1;
+    });
+  }
+
   void _logout() async {
     await _authService.logout();
     if (mounted) {
@@ -92,7 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: ChoiceChip(
                   label: Text(cat),
                   selected: selected,
-                  selectedColor: Colors.orange,
+                  selectedColor: Color(0xFF015C92),
                   backgroundColor: Colors.white,
                   labelStyle: TextStyle(
                     color: selected ? Colors.white : Colors.black,
@@ -127,7 +133,14 @@ class _HomeScreenState extends State<HomeScreen> {
               fit: BoxFit.cover,
             ),
             title: Text(restaurant.name),
-            subtitle: Text('${restaurant.city} • ⭐ ${restaurant.rating}'),
+            subtitle: Row(
+              children: [
+                Text('${restaurant.city}'),
+                SizedBox(width: 8),
+                Icon(Icons.star, color: Colors.amber, size: 16),
+                Text('${restaurant.rating}'),
+              ],
+            ),
             onTap: () {
               Navigator.push(
                 context,
@@ -154,31 +167,32 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> pages = [_buildHomeContent(), const FavouriteScreen()];
-
     return Scaffold(
       appBar: AppBar(
-        title: Text("Halo, $_username"),
+        backgroundColor: const Color(0xFF015C92),
+        title: Text(
+          "Halo, $_username",
+          style: const TextStyle(color: Colors.white),
+        ),
         actions: [
-          IconButton(onPressed: _logout, icon: const Icon(Icons.logout)),
-        ],
-      ),
-      body: pages[_currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
-            label: 'Favourite',
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const FavouriteScreen(),
+                ),
+              );
+            },
+            icon: const Icon(Icons.favorite, color: Colors.white),
+          ),
+          IconButton(
+            onPressed: _logout,
+            icon: const Icon(Icons.logout, color: Colors.white),
           ),
         ],
       ),
+      body: _buildHomeContent(),
     );
   }
 }
